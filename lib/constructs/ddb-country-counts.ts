@@ -2,7 +2,7 @@ import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { RemovalPolicy } from "aws-cdk-lib";
 import { Construct } from "constructs";
 
-export class EmpowerVisitorsTable extends Construct {
+export class EmpowerCountryCountsTable extends Construct {
   readonly table: Table;
 
   constructor(scope: Construct, id: string) {
@@ -12,10 +12,10 @@ export class EmpowerVisitorsTable extends Construct {
   }
 
   private createTable(): Table {
-    return new Table(this, "VisitorsDataTable", {
-      tableName: "Visitors",
+    return new Table(this, "CountryCountsTable", {
+      tableName: "CountryCounts",
       partitionKey: {
-        name: "ip",
+        name: "countryCode",
         type: AttributeType.STRING,
       },
       billingMode: BillingMode.PROVISIONED,
