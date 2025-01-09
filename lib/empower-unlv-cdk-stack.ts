@@ -6,11 +6,13 @@ import { EmpowerGraphDataTable } from "./constructs/ddb-data";
 import { EmpowerUserPool } from "./constructs/cognito-user-pool";
 import { EmpowerVisitorsTable } from "./constructs/ddb-visitors";
 import { EmpowerCountryCountsTable } from "./constructs/ddb-country-counts";
+import { EmpowerRegionCountsTable } from "./constructs/ddb-region-data";
 
 export class EmpowerUnlvCdkStack extends cdk.Stack {
   readonly ddbDataTable: Table;
   readonly ddbVisitorTable: Table;
   readonly ddbCountryCountsTable: Table;
+  readonly ddbRegionCountsTable: Table;
   readonly userPool: UserPool;
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -20,6 +22,10 @@ export class EmpowerUnlvCdkStack extends cdk.Stack {
     this.ddbCountryCountsTable = new EmpowerCountryCountsTable(
       this,
       "EmpowerCountryCountsTable"
+    ).table;
+    this.ddbRegionCountsTable = new EmpowerRegionCountsTable(
+      this,
+      "EmpowerRegionCountsTable"
     ).table;
     this.userPool = new EmpowerUserPool(this, "EmpowerUserPool").userPool;
   }
